@@ -39,6 +39,14 @@
                                 <label for="image" class="mb-1"><strong>Image:</strong></label>
                                 <input type="file" class="form-control mb-3" id="image" name="image">
                             </div>
+                            <div class="form-group">
+                                <label for="technologies" class="mb-1"><strong>Technologies:</strong></label>
+                                <select class="form-control mb-3" id="technologies" name="technologies[]" multiple>
+                                    @foreach ($technologies as $technology)
+                                        <option value="{{ $technology->id }}">{{ $technology->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <button type="submit" class="btn btn-primary">Create Project</button>
                         </form>
                     </div>
