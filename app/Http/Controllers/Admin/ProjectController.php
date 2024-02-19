@@ -87,8 +87,26 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        $project->update($request->all());
-        return redirect()->route('admin.data.show', $project);
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'length' => 'required|string|max:255',
+            'duration' => 'required|string|max:255',
+            'color' => 'required|string|max:255',
+            'technologies' => 'array',
+        ]);
+
+        // Aggiorna i dati del progetto
+        $project->update($validatedData);
+
+        // Aggiorna le relazioni many-to-many con technologies
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($request->input('technologies'));
+        } else {
+            $project->technologies()->detach();
+        }
+
+        return redirect()->route('admin.projects.show', $project);
     }
 
     /**
