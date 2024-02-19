@@ -16,9 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('version')->nullable();
-            $table->string('website')->nullable();
-            $table->string('documentation')->nullable();
-            $table->string('github_repo')->nullable();
             $table->timestamps();
         });
     }
