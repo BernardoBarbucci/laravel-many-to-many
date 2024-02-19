@@ -18,6 +18,13 @@
                             <li class="list-group-item">Length: {{ $project['length'] }}</li>
                             <li class="list-group-item">Duration: {{ $project['duration'] }}</li>
                             <li class="list-group-item">Color: {{ $project['color'] }}</li>
+                            <li class="list-group-item"><strong>Technologies:</strong>
+                                <ul>
+                                    @foreach ($project->technologies as $technology)
+                                        <li>{{ $technology->name }}</li>
+                                    @endforeach
+                                </ul>
+                            </li>
                         </ul>
                         <div class="card-body d-flex justify-content-between">
                             <a href="{{ route('admin.data.show', $project) }}" class="btn btn-success">Show</a>

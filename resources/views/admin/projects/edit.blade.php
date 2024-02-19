@@ -37,6 +37,17 @@
                                 <input type="text" class="form-control mb-3" id="color" name="color"
                                     value="{{ $project->color }}">
                             </div>
+                            <div class="form-group">
+                                <label for="technologies" class="mb-1"><strong>Technologies:</strong></label>
+                                <select class="form-control mb-3" id="technologies" name="technologies[]" multiple>
+                                    @foreach ($technologies as $technology)
+                                        <option value="{{ $technology->id }}"
+                                            {{ $project->technologies->contains($technology->id) ? 'selected' : '' }}>
+                                            {{ $technology->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <button type="submit" class="btn btn-primary">Save Changes</button>
                         </form>
                     </div>
