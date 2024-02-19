@@ -21,4 +21,10 @@ class Project extends Model
 
     // primary key per destroy
     protected $primaryKey = 'id';
+
+    // relazione many-to-many con il modello technology
+    public function technologies()
+    {
+        return $this->belongsToMany(Technology::class);
+    }
 }
